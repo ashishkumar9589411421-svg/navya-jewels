@@ -1,0 +1,35 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>Timeless Luxury, Crafted For You</h1>
+    <p>Discover premium jewelry that matches your story and style.</p>
+    <div class="hero-buttons">
+      <a href="/shop" class="btn-primary">Shop Now</a>
+      <a href="/contact" class="btn-outline">Book an Appointment</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Featured Collections</h2>
+  <div class="product-grid">
+    <% featured.forEach(p => { %>
+      <div class="product-card">
+        <div class="product-image">
+          <% if (p.image) { %>
+            <img src="<%= p.image %>" alt="<%= p.name %>" />
+          <% } %>
+        </div>
+        <h3><%= p.name %></h3>
+        <p class="product-category">
+          <%= p.metal || p.category %>
+          <% if (p.carat) { %>
+            •
+            <% if (p.metal === 'Silver') { %><%= p.carat %><% } else { %><%= p.carat %>K<% } %>
+          <% } %>
+        </p>
+        <p class="product-price">₹<%= p.price %></p>
+        <a href="/product/<%= p.id %>" class="btn-outline">View Details</a>
+      </div>
+    <% }) %>
+  </div>
+</section>

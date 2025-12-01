@@ -1,0 +1,25 @@
+
+<section class="section">
+  <h1>My Orders</h1>
+
+  <% if (orders.length === 0) { %>
+    <p>You have no orders yet.</p>
+    <a href="/shop" class="btn-primary">Start Shopping</a>
+  <% } else { %>
+    <div class="orders-list">
+      <% orders.forEach(order => { %>
+        <div class="order-card">
+          <h3>Order <%= order.id %></h3>
+          <p>Status: <strong><%= order.status %></strong></p>
+          <p>Date: <%= new Date(order.createdAt).toLocaleString() %></p>
+          <ul>
+            <% order.items.forEach(item => { %>
+              <li><%= item.name %> x <%= item.quantity %> – ₹<%= item.price * item.quantity %></li>
+            <% }) %>
+          </ul>
+          <p class="order-total">Total: ₹<%= order.total %></p>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>

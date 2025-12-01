@@ -1,0 +1,53 @@
+
+
+<section class="section">
+  <h1>Checkout</h1>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <div class="checkout-grid">
+    <div>
+      <h2>Delivery Details</h2>
+      <form action="/checkout" method="POST" class="checkout-form">
+        <label>Full Name*</label>
+        <input type="text" name="name" required />
+
+        <label>Phone*</label>
+        <input type="text" name="phone" required />
+
+        <label>Address*</label>
+        <textarea name="address" required></textarea>
+
+        <label>City*</label>
+        <input type="text" name="city" required />
+
+        <label>Pincode*</label>
+        <input type="text" name="pincode" required />
+
+        <label>Payment Method*</label>
+        <select name="paymentMethod" required>
+          <option value="">Select</option>
+          <option value="COD">Cash on Delivery</option>
+          <option value="ONLINE">Online (Placeholder)</option>
+        </select>
+
+        <button type="submit" class="btn-primary">Place Order</button>
+      </form>
+    </div>
+
+    <div>
+      <h2>Order Summary</h2>
+      <ul class="summary-list">
+        <% cartItems.forEach(item => { %>
+          <li>
+            <span><%= item.product.name %> x <%= item.quantity %></span>
+            <span>₹<%= item.lineTotal %></span>
+          </li>
+        <% }) %>
+      </ul>
+      <h3>Total: ₹<%= total %></h3>
+    </div>
+  </div>
+</section>

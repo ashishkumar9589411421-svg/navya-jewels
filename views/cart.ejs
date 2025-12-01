@@ -1,0 +1,45 @@
+
+<section class="section">
+  <h1>Your Cart</h1>
+
+  <% if (cartItems.length === 0) { %>
+    <p>Your cart is empty.</p>
+    <a href="/shop" class="btn-primary">Continue Shopping</a>
+  <% } else { %>
+    <form action="/cart/update" method="POST">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cartItems.forEach(item => { %>
+            <tr>
+              <td><%= item.product.name %></td>
+              <td>₹<%= item.product.price %></td>
+              <td>
+                <input type="number" name="quantity[<%= item.product.id %>]" value="<%= item.quantity %>" min="1" />
+              </td>
+              <td>₹<%= item.lineTotal %></td>
+              <td>
+                <form action="/cart/remove/<%= item.product.id %>" method="POST">
+                  <button class="btn-outline">Remove</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <div class="cart-summary">
+        <h3>Total: ₹<%= total %></h3>
+        <button type="submit" class="btn-outline">Update Cart</button>
+        <a href="/checkout" class="btn-primary">Proceed to Checkout</a>
+      </div>
+    </form>
+  <% } %>
+</section>

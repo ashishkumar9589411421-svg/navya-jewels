@@ -1,0 +1,28 @@
+
+
+<section class="section auth-section">
+  <h1>Create Account</h1>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form action="/register" method="POST" class="auth-form">
+    <label>Full Name*</label>
+    <input type="text" name="name" required />
+
+    <label>Email (Gmail) OR Phone*</label>
+    <input type="email" name="email" placeholder="yourgmail@gmail.com" />
+    <span class="or-text">OR</span>
+    <input type="text" name="phone" placeholder="Phone number" />
+
+    <label>Password*</label>
+    <input type="password" name="password" required />
+
+    <button type="submit" class="btn-primary">Sign Up</button>
+
+    <p class="auth-switch">
+      Already have an account? <a href="/login">Login</a>
+    </p>
+  </form>
+</section>

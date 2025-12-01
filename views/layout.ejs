@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Navya Jewels - <%= typeof pageTitle !== "undefined" ? pageTitle : "Timeless Luxury" %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body class="site-body">
+  <!-- Top gradient / glow background -->
+  <div class="page-bg-gradient"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Left: Logo + brand text -->
+      <a href="/" class="brand-block">
+        <div class="brand-logo-circle">
+          <span class="brand-initial">N</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Navya Jewels</span>
+          <span class="brand-tagline">Timeless. Elegant. Yours.</span>
+        </div>
+      </a>
+
+            <!-- Center: Navigation -->
+      <nav class="main-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/gold" class="nav-link">Gold</a>
+        <a href="/silver" class="nav-link">Silver</a>
+        <a href="/diamond" class="nav-link">Diamond</a>
+        <a href="/shop" class="nav-link">All Collections</a>
+        <a href="/about" class="nav-link">About</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/cart" class="nav-link nav-cart">
+          Cart
+          <span class="cart-badge"><%= cart.length || 0 %></span>
+        </a>
+      </nav>
+
+
+      <!-- Right: Auth -->
+      <div class="auth-area">
+        <% if (currentUser) { %>
+          <div class="user-chip">
+            <span class="user-avatar">
+              <span><%= (currentUser.name || "U").charAt(0).toUpperCase() %></span>
+            </span>
+            <span class="user-label">Hi, <%= currentUser.name %></span>
+          </div>
+          <a href="/orders" class="btn-ghost">My Orders</a>
+          <a href="/logout" class="btn-outline">Logout</a>
+        <% } else { %>
+          <a href="/login" class="btn-ghost">Login</a>
+          <a href="/register" class="btn-primary">Sign Up</a>
+        <% } %>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <%- body %>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <h3 class="footer-title">Navya Jewels</h3>
+        <p class="footer-text">Fine jewelry crafted with love for your special moments.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/shop">Shop</a>
+      </div>
+      <div class="footer-meta">
+        <p>© <%= new Date().getFullYear() %> Navya Jewels. All rights reserved.</p>
+        <p class="footer-subtext">Handcrafted in India with care.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

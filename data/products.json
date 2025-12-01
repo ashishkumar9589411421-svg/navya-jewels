@@ -1,0 +1,82 @@
+[
+  {
+    "id": "G24N001",
+    "name": "24K Royal Heritage Necklace",
+    "price": 54999,
+    "image": "/images/gold-necklace-24k.jpg",
+    "category": "Necklace",
+    "metal": "Gold",
+    "carat": 24,
+    "description": "Pure 24K gold-inspired finish necklace with intricate heritage motifs, perfect for bridal looks."
+  },
+  {
+    "id": "G22S001",
+    "name": "22K Temple Set with Earrings",
+    "price": 42999,
+    "image": "/images/gold-set-22k.jpg",
+    "category": "Bridal Set",
+    "metal": "Gold",
+    "carat": 22,
+    "description": "Traditional 22K look choker set with matching jhumkas, inspired by South Indian temple jewelry."
+  },
+  {
+    "id": "G22B001",
+    "name": "22K Classic Kada Bangle",
+    "price": 18999,
+    "image": "/images/gold-bangle-22k.jpg",
+    "category": "Bangle",
+    "metal": "Gold",
+    "carat": 22,
+    "description": "Elegant single kada with a timeless design, perfect for everyday luxury."
+  },
+  {
+    "id": "G18R001",
+    "name": "18K Solitaire Style Ring",
+    "price": 12999,
+    "image": "/images/gold-ring-18k.jpg",
+    "category": "Ring",
+    "metal": "Gold",
+    "carat": 18,
+    "description": "Delicate 18K look ring with high-shine stone setting, ideal for proposals and anniversaries."
+  },
+  {
+    "id": "D18R001",
+    "name": "Diamond Halo Engagement Ring",
+    "price": 69999,
+    "image": "/images/diamond-ring-18k.jpg",
+    "category": "Ring",
+    "metal": "Diamond",
+    "carat": 18,
+    "description": "Sparkling halo diamond style ring set on 18K finish band for a classic proposal moment."
+  },
+  {
+    "id": "D18N001",
+    "name": "Diamond Droplet Necklace",
+    "price": 89999,
+    "image": "/images/diamond-necklace-18k.jpg",
+    "category": "Necklace",
+    "metal": "Diamond",
+    "carat": 18,
+    "description": "Fine necklace with droplet diamonds-style arrangement that beautifully frames the neckline."
+  },
+  {
+    "id": "S925B001",
+    "name": "925 Silver Minimal Bracelet",
+    "price": 2999,
+    "image": "/images/silver-bracelet-925.jpg",
+    "category": "Bracelet",
+    "metal": "Silver",
+    "carat": 925,
+    "description": "Everyday wear 925 silver bracelet with minimal design for subtle elegance."
+  },
+  {
+    "id": "S925A001",
+    "name": "925 Silver Anklet with Ghungroo",
+    "price": 2499,
+    "image": "/images/silver-anklet-925.jpg",
+    "category": "Anklet",
+    "metal": "Silver",
+    "carat": 925,
+    "description": "Traditional silver anklet with tiny ghungroos for a soft, melodious charm."
+  }
+]

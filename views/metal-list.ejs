@@ -1,0 +1,62 @@
+<section class="section">
+  <div class="metal-header">
+    <h1><%= heading %></h1>
+    <p class="section-subtitle"><%= subtitle %></p>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="metal-filter-bar">
+    <span class="filter-label">Filter by purity:</span>
+
+    <a href="/<%= metal.toLowerCase() %>" class="filter-pill <%= caratFilter === 0 ? 'is-active' : '' %>">
+      All
+    </a>
+
+    <% if (metal === 'Gold' || metal === 'Diamond') { %>
+      <a href="/<%= metal.toLowerCase() %>?carat=24" class="filter-pill <%= caratFilter === 24 ? 'is-active' : '' %>">
+        24K
+      </a>
+      <a href="/<%= metal.toLowerCase() %>?carat=22" class="filter-pill <%= caratFilter === 22 ? 'is-active' : '' %>">
+        22K
+      </a>
+      <a href="/<%= metal.toLowerCase() %>?carat=18" class="filter-pill <%= caratFilter === 18 ? 'is-active' : '' %>">
+        18K
+      </a>
+    <% } else { %>
+      <!-- Silver: use generic tags -->
+      <a href="/<%= metal.toLowerCase() %>?carat=925" class="filter-pill <%= caratFilter === 925 ? 'is-active' : '' %>">
+        925
+      </a>
+    <% } %>
+  </div>
+
+  <% if (products.length === 0) { %>
+    <p style="margin-top: 1rem; color: #b3b3c7;">No items found for this filter.</p>
+  <% } else { %>
+    <div class="product-grid">
+      <% products.forEach(p => { %>
+        <div class="product-card">
+          <div class="product-image">
+            <% if (p.image) { %>
+              <img src="<%= p.image %>" alt="<%= p.name %>" />
+            <% } %>
+          </div>
+          <h3><%= p.name %></h3>
+          <p class="product-category">
+            <%= p.metal %>
+            <% if (p.carat) { %>
+              •
+              <% if (p.metal === 'Silver') { %>
+                <%= p.carat %>
+              <% } else { %>
+                <%= p.carat %>K
+              <% } %>
+            <% } %>
+          </p>
+          <p class="product-price">₹<%= p.price %></p>
+          <a href="/product/<%= p.id %>" class="btn-outline">View Details</a>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</section>

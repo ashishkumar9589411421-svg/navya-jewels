@@ -1,0 +1,23 @@
+
+
+<section class="section auth-section">
+  <h1>Login</h1>
+
+  <% if (error) { %>
+    <p class="error"><%= error %></p>
+  <% } %>
+
+  <form action="/login" method="POST" class="auth-form">
+    <label>Email (Gmail) or Phone*</label>
+    <input type="text" name="identifier" required />
+
+    <label>Password*</label>
+    <input type="password" name="password" required />
+
+    <button type="submit" class="btn-primary">Login</button>
+
+    <p class="auth-switch">
+      New here? <a href="/register">Create account</a>
+    </p>
+  </form>
+</section>

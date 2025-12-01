@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="product-detail">
+    <div class="product-detail-image">
+      <% if (product.image) { %>
+        <img src="<%= product.image %>" alt="<%= product.name %>" />
+      <% } %>
+    </div>
+    <div class="product-detail-info">
+      <h1><%= product.name %></h1>
+      <p class="product-category">
+        <%= product.metal || product.category %>
+        <% if (product.carat) { %>
+          •
+          <% if (product.metal === 'Silver') { %><%= product.carat %><% } else { %><%= product.carat %>K<% } %>
+        <% } %>
+      </p>
+      <p class="product-price big">₹<%= product.price %></p>
+      <p><%= product.description %></p>
+
+      <form action="/cart/add/<%= product.id %>" method="POST" class="inline-form">
+        <label>Quantity</label>
+        <input type="number" name="quantity" value="1" min="1" />
+        <button type="submit" class="btn-primary">Add to Cart</button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+<section class="section">
+  <h1>All Collections</h1>
+  <p class="section-subtitle">
+    Browse every Navya Jewels creation across gold, diamond and silver.
+  </p>
+  <div class="product-grid">
+    <% products.forEach(p => { %>
+      <div class="product-card">
+        <div class="product-image">
+          <% if (p.image) { %>
+            <img src="<%= p.image %>" alt="<%= p.name %>" />
+          <% } %>
+        </div>
+        <h3><%= p.name %></h3>
+        <p class="product-category">
+          <%= p.metal || p.category %>
+          <% if (p.carat) { %>
+            •
+            <% if (p.metal === 'Silver') { %><%= p.carat %><% } else { %><%= p.carat %>K<% } %>
+          <% } %>
+        </p>
+        <p class="product-price">₹<%= p.price %></p>
+        <a href="/product/<%= p.id %>" class="btn-outline">View Details</a>
+      </div>
+    <% }) %>
+  </div>
+</section>

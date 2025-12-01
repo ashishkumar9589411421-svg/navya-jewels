@@ -1,0 +1,75 @@
+<section class="section">
+  <div class="contact-layout">
+    <!-- Left: Brand info card -->
+    <div class="contact-info-card">
+      <div class="contact-badge">
+        <span class="contact-badge-dot"></span>
+        Premium Consultation
+      </div>
+
+      <h1>Visit, Call or Write to Navya Jewels</h1>
+      <p class="section-subtitle">
+        Book a bridal consultation, customise a piece, or simply ask us anything about your next jewel.
+      </p>
+
+      <div class="contact-highlights">
+        <div class="contact-highlight-item">
+          <span class="highlight-label">Showroom Hours</span>
+          <span class="highlight-value">11:00 AM – 8:00 PM (IST)</span>
+        </div>
+        <div class="contact-highlight-item">
+          <span class="highlight-label">Location</span>
+          <span class="highlight-value">Navya Jewels Studio, Your City, India</span>
+        </div>
+        <div class="contact-highlight-item">
+          <span class="highlight-label">WhatsApp</span>
+          <span class="highlight-value">+91-90000 00000</span>
+        </div>
+      </div>
+
+      <div class="contact-note">
+        <p>Share a bit about your occasion and style – we’ll reply with handpicked designs just for you.</p>
+      </div>
+    </div>
+
+    <!-- Right: Form card -->
+    <div class="contact-form-card">
+      <h2>Send us a message</h2>
+
+      <% if (error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+
+      <% if (success) { %>
+        <p class="success"><%= success %></p>
+      <% } %>
+
+      <form action="/contact" method="POST" class="contact-form">
+        <label>Name*</label>
+        <input type="text" name="name" placeholder="Your full name" required />
+
+        <div class="contact-row">
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" />
+          </div>
+          <div>
+            <label>Phone</label>
+            <input type="text" name="phone" placeholder="+91-XXXXXXXXXX" />
+          </div>
+        </div>
+
+        <label>How can we help you?*</label>
+        <textarea name="message" placeholder="Tell us about your occasion, budget, or the kind of piece you’re looking for." required></textarea>
+
+        <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.4rem;">
+          Send Enquiry
+        </button>
+
+        <p class="contact-small-text">
+          We usually respond within 24 hours on working days.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
