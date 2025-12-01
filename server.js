@@ -559,6 +559,163 @@ app.post("/contact", (req, res) => {
 app.get("/about", (req, res) => {
   res.render("about", { pageTitle: "About" });
 });
+// === Simple Admin Auth Middleware ===
+// NOTE: For now, admin password is hard-coded: "navyaadmin"
+// You can change it or move to an environment variable later.
+
+function requireAdmin(req, res, next) {
+  if (!req.session.isAdmin) {
+    return res.redirect("/admin/login");
+  }
+  next();
+}
+
+// Admin login page
+app.get("/admin/login", (req, res) => {
+  res.render("admin-login", { pageTitle: "Admin Login", error: null });
+});
+
+// Admin login submit
+app.post("/admin/login", (req, res) => {
+  const { password } = req.body;
+  const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "navyaadmin";
+
+  if (!password || password !== ADMIN_PASSWORD) {
+    return res.render("admin-login", {
+      pageTitle: "Admin Login",
+      error: "Invalid admin password.",
+    });
+  }
+
+  req.session.isAdmin = true;
+  res.redirect("/admin");
+});
+
+// Admin logout
+app.get("/admin/logout", (req, res) => {
+  req.session.isAdmin = false;
+  res.redirect("/admin/login");
+});
+
+// Admin dashboard
+app.get("/admin", requireAdmin, (req, res) => {
+  const users = readJson(USERS_FILE);
+  const orders = readJson(ORDERS_FILE);
+  const contacts = readJson(CONTACTS_FILE);
+
+  const stats = {
+    usersCount: users.length,
+    ordersCount: orders.length,
+    enquiriesCount: contacts.length,
+  };
+
+  res.render("admin-dashboard", {
+    pageTitle: "Admin Dashboard",
+    stats,
+    orders,
+    contacts,
+  });
+});
+
+// ---- Admin actions: Orders ----
+
+// Confirm Order
+app.post("/admin/orders/:id/confirm", requireAdmin, (req, res) => {
+  const orders = readJson(ORDERS_FILE);
+  const orderId = req.params.id;
+
+  const index = orders.findIndex(o => o.id === orderId);
+  if (index >= 0) {
+    orders[index].status = "Confirmed";
+    writeJson(ORDERS_FILE, orders);
+  }
+  res.redirect("/admin");
+});
+// Processing Order
+app.post("/admin/orders/:id/processing", requireAdmin, (req, res) => {
+  const orders = readJson(ORDERS_FILE);
+  const orderId = req.params.id;
+
+  const index = orders.findIndex(o => o.id === orderId);
+  if (index >= 0) {
+    orders[index].status = "Processing";
+    writeJson(ORDERS_FILE, orders);
+  }
+  res.redirect("/admin");
+});
+// Reject Order
+app.post("/admin/orders/:id/reject", requireAdmin, (req, res) => {
+  const orders = readJson(ORDERS_FILE);
+  const orderId = req.params.id;
+
+  const index = orders.findIndex(o => o.id === orderId);
+  if (index >= 0) {
+    orders[index].status = "Rejected";
+    writeJson(ORDERS_FILE, orders);
+  }
+  res.redirect("/admin");
+});
+// Delivered Order
+app.post("/admin/orders/:id/deliver", requireAdmin, (req, res) => {
+  const orders = readJson(ORDERS_FILE);
+  const orderId = req.params.id;
+
+  const index = orders.findIndex(o => o.id === orderId);
+  if (index >= 0) {
+    orders[index].status = "Delivered";
+    writeJson(ORDERS_FILE, orders);
+  }
+  res.redirect("/admin");
+});
+
+
+// Mark order delivered
+app.post("/admin/orders/:id/deliver", requireAdmin, (req, res) => {
+  const orders = readJson(ORDERS_FILE);
+  const orderId = req.params.id;
+
+  const index = orders.findIndex((o) => o.id === orderId);
+  if (index >= 0) {
+    orders[index].status = "Delivered";
+    writeJson(ORDERS_FILE, orders);
+  }
+  res.redirect("/admin");
+});
+
+// Delete order
+app.post("/admin/orders/:id/delete", requireAdmin, (req, res) => {
+  const orders = readJson(ORDERS_FILE);
+  const orderId = req.params.id;
+
+  const filtered = orders.filter((o) => o.id !== orderId);
+  writeJson(ORDERS_FILE, filtered);
+  res.redirect("/admin");
+});
+
+// ---- Admin actions: Enquiries ----
+
+// Mark enquiry done
+// app.post("/admin/contacts/:id/done", requireAdmin, (req, res) => {
+//   const contacts = readJson(CONTACTS_FILE);
+//   const contactId = req.params.id;
+
+//   const index = contacts.findIndex((c) => c.id === contactId);
+//   if (index >= 0) {
+//     contacts[index].status = "Done";
+//     writeJson(CONTACTS_FILE, contacts);
+//   }
+//   res.redirect("/admin");
+// });
+
+// Delete enquiry
+app.post("/admin/contacts/:id/delete", requireAdmin, (req, res) => {
+  const contacts = readJson(CONTACTS_FILE);
+  const contactId = req.params.id;
+
+  const filtered = contacts.filter((c) => c.id !== contactId);
+  writeJson(CONTACTS_FILE, filtered);
+  res.redirect("/admin");
+});
 
 // === Start server ===
 const PORT = process.env.PORT || 3000;

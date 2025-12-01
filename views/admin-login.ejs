@@ -1,0 +1,49 @@
+<section class="section auth-section">
+  <h1>Admin Login</h1>
+
+  <% if (error) { %>
+    <p class="error" style="color: #ff6b6b; margin-bottom: 1rem;">
+      <%= error %>
+    </p>
+  <% } %>
+
+  <form action="/admin/login" method="POST" class="auth-form" style="max-width: 380px; margin:auto;">
+    <label style="display:block; margin-bottom:0.4rem;">Admin Password</label>
+    <input 
+      type="password" 
+      name="password" 
+      placeholder="Enter admin password"
+      required
+      style="
+        width:100%;
+        padding:0.6rem;
+        border-radius:10px;
+        border:1px solid #444;
+        margin-bottom:1rem;
+        background:#111;
+        color:white;
+      "
+    />
+
+    <button 
+      type="submit" 
+      class="btn-primary"
+      style="
+        width: 100%;
+        padding: 0.7rem;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #f9d976, #f39f86);
+        border: none;
+        color: #111;
+        font-weight: 600;
+        cursor: pointer;
+      "
+    >
+      Login as Admin
+    </button>
+
+    <p style="text-align:center; margin-top:1rem; color:#aaa;">
+      Authorized Access Only
+    </p>
+  </form>
+</section>

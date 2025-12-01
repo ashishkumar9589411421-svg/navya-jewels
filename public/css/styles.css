@@ -898,6 +898,109 @@ textarea {
   border-color: transparent;
   color: #1a1410;
 }
+/* =============== Admin dashboard =============== */
+
+.admin-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.admin-summary-card {
+  padding: 0.9rem 1rem;
+  border-radius: 16px;
+  background: rgba(10, 10, 18, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.summary-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.summary-value {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.admin-table-wrapper {
+  max-height: 360px;
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 10, 18, 0.96);
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.admin-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.admin-btn.small {
+  font-size: 0.75rem;
+}
+
+.admin-btn.green {
+  background: #2f9e44;
+  color: #ffffff;
+}
+
+.admin-btn.blue {
+  background: #228be6;
+  color: #ffffff;
+}
+
+.admin-btn.red {
+  background: #e03131;
+  color: #ffffff;
+}
+
+
+/* =============== Order status badges =============== */
+
+.order-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.order-status.pending {
+  background: #555555;
+}
+
+.order-status.confirmed {
+  background: #2f9e44;
+}
+
+.order-status.processing {
+  background: #228be6;
+}
+
+.order-status.rejected {
+  background: #e03131;
+}
+
+.order-status.delivered {
+  background: #f59f00;
+}
+
 
 /* Mobile responsive */
 

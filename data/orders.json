@@ -1,29 +1,23 @@
 [
   {
-    "id": "O1764570088522",
-    "userId": "U1764566751312",
-    "customerName": "1213",
+    "id": "O1764573335116",
+    "userId": "U1764572441461",
+    "customerName": "alo",
     "phone": "9335448834",
     "address": "63 - G , 63 - H, Sharda Shiksha Niketan, Satbari Road, New Azad nagar Kanpur Kanpur Nagar Uttar Pradesh India, 208011",
     "city": "Kanpur Nagar",
     "pincode": "208011",
-    "paymentMethod": "ONLINE",
+    "paymentMethod": "COD",
     "items": [
       {
-        "productId": "G22S001",
-        "name": "22K Temple Set with Earrings",
-        "price": 42999,
-        "quantity": 1
-      },
-      {
-        "productId": "S925B001",
-        "name": "925 Silver Minimal Bracelet",
-        "price": 2999,
+        "productId": "G24N001",
+        "name": "24K Royal Heritage Necklace",
+        "price": 54999,
         "quantity": 1
       }
     ],
-    "total": 45998,
-    "status": "Confirmed",
-    "createdAt": "2025-12-01T06:21:28.522Z"
+    "total": 54999,
+    "status": "Rejected",
+    "createdAt": "2025-12-01T07:15:35.116Z"
   }
 ]

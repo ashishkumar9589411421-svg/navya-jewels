@@ -1,0 +1,146 @@
+<section class="section">
+  <h1>Admin Dashboard</h1>
+  <p class="section-subtitle">
+    Manage orders and enquiries for Navya Jewels.
+  </p>
+
+  <div class="admin-summary-grid">
+    <div class="admin-summary-card">
+      <span class="summary-label">Registered Users</span>
+      <span class="summary-value"><%= stats.usersCount %></span>
+    </div>
+    <div class="admin-summary-card">
+      <span class="summary-label">Total Orders</span>
+      <span class="summary-value"><%= stats.ordersCount %></span>
+    </div>
+    <div class="admin-summary-card">
+      <span class="summary-label">Total Enquiries</span>
+      <span class="summary-value"><%= stats.enquiriesCount %></span>
+    </div>
+    <div class="admin-summary-card">
+      <span class="summary-label">Quick</span>
+      <span class="summary-value">
+        <a href="/admin/logout" class="btn-ghost">Logout</a>
+      </span>
+    </div>
+  </div>
+
+  <!-- Orders -->
+  <div class="section" style="margin-top: 2rem;">
+    <h2>Recent Orders</h2>
+    <% if (!orders.length) { %>
+      <p style="color: #b3b3c7;">No orders yet.</p>
+    <% } else { %>
+      <div class="admin-table-wrapper">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Total (₹)</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% orders.slice().reverse().forEach(o => { %>
+            <tr>
+              <td><%= o.id %></td>
+              <td><%= o.customerName %></td>
+              <td><%= o.phone %></td>
+              <td>₹<%= o.total %></td>
+              <td><%= o.status %></td>
+              <td><%= o.createdAt %></td>
+              <td>
+                <div class="admin-actions">
+  <form action="/admin/orders/<%= o.id %>/confirm" method="POST">
+    <button class="admin-btn small green">Confirm</button>
+  </form>
+
+  <form action="/admin/orders/<%= o.id %>/processing" method="POST">
+    <button class="admin-btn small blue">Process</button>
+  </form>
+
+  <form action="/admin/orders/<%= o.id %>/reject" method="POST">
+    <button class="admin-btn small red">Reject</button>
+  </form>
+
+  <form action="/admin/orders/<%= o.id %>/deliver" method="POST">
+    <button class="admin-btn small yellow">Delivered</button>
+  </form>
+</div>
+
+              </td>
+            </tr>
+            <tr>
+              <td colspan="7" style="font-size: 0.8rem; color: #b3b3c7;">
+                <strong>Items:</strong>
+                <% (o.items || []).forEach(item => { %>
+                  <span>
+                    <%= item.name %> x<%= item.quantity %> (₹<%= item.price %> each)
+                  </span>&nbsp;&nbsp;
+                <% }) %>
+              </td>
+            </tr>
+          <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Enquiries -->
+  <div class="section" style="margin-top: 2rem;">
+    <h2>Enquiries</h2>
+    <% if (!contacts.length) { %>
+      <p style="color: #b3b3c7;">No enquiries yet.</p>
+    <% } else { %>
+      <div class="admin-table-wrapper">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+          <% contacts.slice().reverse().forEach(c => { %>
+            <tr>
+              <td><%= c.id %></td>
+              <td><%= c.name %></td>
+              <td>
+                <div>
+                  <% if (c.email) { %><div><%= c.email %></div><% } %>
+                  <% if (c.phone) { %><div><%= c.phone %></div><% } %>
+                </div>
+              </td>
+              <td><%= c.status || 'Pending' %></td>
+              <td><%= c.createdAt %></td>
+              <td style="max-width: 260px; font-size: 0.82rem;"><%= c.message %></td>
+              <td>
+                <div class="admin-actions">
+                  <form action="/admin/contacts/<%= c.id %>/done" method="POST" style="display:inline;">
+                    <button class="admin-btn small green" type="submit">Done</button>
+                  </form>
+                  <form action="/admin/contacts/<%= c.id %>/delete" method="POST" style="display:inline;">
+                    <button class="admin-btn small red" type="submit" onclick="return confirm('Remove this enquiry?');">
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+</section>

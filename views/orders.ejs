@@ -1,4 +1,3 @@
-
 <section class="section">
   <h1>My Orders</h1>
 
@@ -7,16 +6,29 @@
     <a href="/shop" class="btn-primary">Start Shopping</a>
   <% } else { %>
     <div class="orders-list">
-      <% orders.forEach(order => { %>
+      <% orders.forEach(order => { 
+           const status = order.status || 'Pending';
+      %>
         <div class="order-card">
           <h3>Order <%= order.id %></h3>
-          <p>Status: <strong><%= order.status %></strong></p>
+
+          <p>
+            Status:
+            <span class="order-status <%= status.toLowerCase() %>">
+              <%= status %>
+            </span>
+          </p>
+
           <p>Date: <%= new Date(order.createdAt).toLocaleString() %></p>
+
           <ul>
-            <% order.items.forEach(item => { %>
-              <li><%= item.name %> x <%= item.quantity %> – ₹<%= item.price * item.quantity %></li>
+            <% (order.items || []).forEach(item => { %>
+              <li>
+                <%= item.name %> x <%= item.quantity %> – ₹<%= item.price * item.quantity %>
+              </li>
             <% }) %>
           </ul>
+
           <p class="order-total">Total: ₹<%= order.total %></p>
         </div>
       <% }) %>
